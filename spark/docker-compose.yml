@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  pyspark:
+    image: jupyter/pyspark-notebook:spark-3.5.0
+    container_name: spark_lab
+    ports:
+      - "8888:8888" # Porta do Jupyter Lab / Notebook
+      - "4040:4040" # Porta da Spark UI (disponível quando um Job estiver rodando)
+    volumes:
+      - ./src:/home/jovyan/work/src
+      - ./script:/home/jovyan/work/script
+      - ./data:/home/jovyan/work/data
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - GRANT_SUDO=yes
+    user: root
+    deploy:
+      resources:
+        limits:
+          memory: 4G # Limite de memória para podermos forçar os cenários de OOM

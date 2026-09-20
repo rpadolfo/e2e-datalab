@@ -1,1 +1,13 @@
 reqs/
+
+# Data Folders (Não enviar dados pro GitHub)
+spark/data/
+*.csv
+*.csv.gz
+*.parquet
+*.json
+
+# Jupyter & Python
+.ipynb_checkpoints/
+__pycache__/
+*.pyc

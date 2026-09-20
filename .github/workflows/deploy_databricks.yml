@@ -1,0 +1,32 @@
+name: Deploy to Databricks
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'spark/src/**'
+  workflow_dispatch: # Permite rodar manualmente pelo GitHub
+
+jobs:
+  deploy:
+    name: Deploy Scripts and Notebooks to Databricks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Databricks CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+
+      - name: Deploy to Databricks Workspace
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: |
+          echo "Iniciando o deploy da pasta spark/src..."
+          # Envia os arquivos locais para uma pasta dentro do Workspace do Databricks
+          databricks workspace import-dir spark/src /Shared/e2e_lab/src --overwrite
+          echo "Deploy concluído com sucesso!"
