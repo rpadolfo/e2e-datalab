@@ -26,6 +26,9 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
+          echo "Testando se as chaves foram carregadas (se retornar vazio, as Secrets não foram lidas):"
+          echo "HOST length: ${#DATABRICKS_HOST}"
+          echo "TOKEN length: ${#DATABRICKS_TOKEN}"
           echo "Iniciando o deploy da pasta spark/src..."
           # Envia os arquivos locais para uma pasta dentro do Workspace do Databricks
           databricks workspace import-dir spark/src /Shared/e2e_lab/src --overwrite
