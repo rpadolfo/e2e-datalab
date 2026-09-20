@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'spark/src/**'
+      - 'mlops/**'
   workflow_dispatch: # Permite rodar manualmente pelo GitHub
 
 jobs:
@@ -29,7 +30,8 @@ jobs:
           echo "Testando se as chaves foram carregadas (se retornar vazio, as Secrets não foram lidas):"
           echo "HOST length: ${#DATABRICKS_HOST}"
           echo "TOKEN length: ${#DATABRICKS_TOKEN}"
-          echo "Iniciando o deploy da pasta spark/src..."
+          echo "Iniciando o deploy das pastas..."
           # Envia os arquivos locais para uma pasta dentro do Workspace do Databricks
           databricks workspace import-dir spark/src /Shared/e2e_lab/src --overwrite
+          databricks workspace import-dir mlops /Shared/e2e_lab/mlops --overwrite
           echo "Deploy concluído com sucesso!"
