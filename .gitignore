@@ -11,3 +11,6 @@ spark/data/
 .ipynb_checkpoints/
 __pycache__/
 *.pyc
+
+# Docs locais
+spark_learnings.md

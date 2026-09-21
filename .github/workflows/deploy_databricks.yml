@@ -7,6 +7,7 @@ on:
     paths:
       - 'spark/src/**'
       - 'mlops/**'
+      - 'delta/**'
   workflow_dispatch: # Permite rodar manualmente pelo GitHub
 
 jobs:
@@ -34,4 +35,5 @@ jobs:
           # Envia os arquivos locais para uma pasta dentro do Workspace do Databricks
           databricks workspace import-dir spark/src /Shared/e2e_lab/src --overwrite
           databricks workspace import-dir mlops /Shared/e2e_lab/mlops --overwrite
+          databricks workspace import-dir delta /Shared/e2e_lab/delta --overwrite
           echo "Deploy concluído com sucesso!"
