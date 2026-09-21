@@ -13,4 +13,4 @@ __pycache__/
 *.pyc
 
 # Docs locais
-spark_learnings.md
+*learnings.md
