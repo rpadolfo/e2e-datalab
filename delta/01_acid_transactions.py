@@ -7,8 +7,8 @@ def main():
         .appName("Delta_ACID_Transactions") \
         .getOrCreate()
 
-    # Caminho no DBFS (Databricks File System) para que possamos explorar os arquivos via UI ou dbutils
-    delta_path = "dbfs:/tmp/delta_study_table"
+    # Caminho no disco local do cluster (já que o DBFS público está desabilitado por segurança)
+    delta_path = "file:/tmp/delta_study_table"
 
     print("1. Criando a tabela inicial...")
     # Criamos um DataFrame simples
